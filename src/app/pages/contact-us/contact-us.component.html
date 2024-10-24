@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 bg-s mt-5 br-2 rounded">
+            <form class="form-inline mt-2 mb-5"  #contactForm = ngForm  (ngSubmit)="onSubmit(contactForm.value)" >
+                <h1 >Contact  Us</h1>
+                <p >Contact US</p>
+
+
+                <div class="alert alert-success text-center"  *ngIf ="saved"> The Admin will receive your message </div>
+
+                <input type="text"
+                 placeholder="name" 
+                 class="form-control" 
+                 required 
+                 name= "name"  
+                 #Name="ngModel" 
+                 ngModel 
+                 [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
+                 <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
+                    <div *ngIf="Name.errors?.['required']" >Name is required</div>
+                </div>
+                <br>
+
+                <input type="email"  
+                placeholder="Email" 
+                class="form-control" 
+                required  
+                email 
+                name= "email" 
+                #Email="ngModel"  
+                ngModel 
+                [ngClass]="{'is-invalid' : Email.touched && Email.invalid}" >
+                <div class="text-danger" *ngIf='Email.touched && Email.invalid' >
+                    <div *ngIf="Email.errors?.['required']" >Email is required</div>
+                </div>
+                <div class="text-danger" *ngIf='Email.touched && Email.invalid' >
+                    <div *ngIf="Email.errors?.['email']" >Enter a valid Email</div>
+                </div>
+                <br>
+
+                <textarea 
+                name="message" 
+                class="form-control"
+                placeholder="Your Message" 
+                required  
+                ngModel 
+                [ngClass]="{'is-invalid' : Message.touched && Message.invalid}"
+                #Message = ngModel
+                ></textarea>
+
+                <div class="text-danger" *ngIf='Message.touched && Message.invalid' >
+                    <div *ngIf="Message.errors?.['required']" >Message is required</div>
+                </div>
+
+                <br>
+                <div>
+                    <button  class="btn btn-success btn-block btn-sub" [disabled] ="contactForm.invalid" > Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

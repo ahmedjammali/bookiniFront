@@ -1,0 +1,10 @@
+.btn-sub{
+
+    padding-right: 50px;
+    padding-left: 50px;
+    height: 50px;
+    border: none;
+    font-size: 13px;
+    background-color: var(--primary-color);
+    color: aliceblue;
+}

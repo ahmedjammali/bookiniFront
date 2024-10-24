@@ -1,0 +1,40 @@
+.hello{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+button{
+    margin-top: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+
+.card{
+    background-color: var(--secondry-color);
+    border: none;
+    box-shadow: 0px 0px 33px -10px rgb(71, 114, 254,0.3);
+    width: 80vw;
+}
+
+input {
+    height: 50px;
+    padding-left: 20px;
+    font-size: 13px;
+    width: 100%;
+    padding-right: 20vw ;
+    margin-bottom: 10px;
+}
+
+.btn-sub{
+    height: 50px;
+    border: none;
+    font-size: 13px;
+    background-color: var(--primary-color);
+    color: aliceblue;
+}
+
+.subs-text{
+    width: 50%;
+}
+

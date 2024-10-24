@@ -1,0 +1,55 @@
+
+<section class="featured-section">
+    <div class="container">
+            <div class="col-md-12 text-center mt-5">
+                <br><br>
+                <h2 class="text-white">Festivals</h2>
+                <p class="text-white">You Can Find Here The Most Important News </p>
+            </div>
+            </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 mt-sm-5" *ngFor= "let featurePost of postArray|async"   [routerLink]="['/post',featurePost.permalink,featurePost.category.categoryId,featurePost.id]">
+                <div class="card  mb-3" *ngIf="featurePost">
+                    <img src="{}" alt="post-image" class="card-img-top">
+                    <p class="align-right">prix <b>DT</b></p>       
+                      <div class="card-body">
+                        <small class="bg-light text-danger text-center mr-2">{{featurePost.category.category}}</small>
+                        <h5 class="mt-1"> {{featurePost.title}} </h5>
+                        <small class="date">LAST UPDATED - {{featurePost.createAt.toMillis()|date}} </small>
+                        <br>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured" >
+    
+<section class="container mt-5">
+    <div class="col-md-12 text-center">
+        <h2>Latest Posts</h2>
+        <p>These Are The Lastest News</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-sm-5" *ngFor= "let latest of latestsPost|async"  [routerLink]="['/post',latest.permalink,latest.category.categoryId,latest.id]" >
+            <div class="card mb-3" *ngIf="latest">
+                <img src="{}" alt="post-image" class="card-img-top"  >
+                <p class="align-right">prix <b>DT</b></p>                    <div class="card-body">
+                    <small class="bg-light text-danger text-center mr-2">{{latest.category.category}}</small>            
+                    <h5 class="mt-1"> {{latest.title}} </h5>
+                    <small class="date">LAST UPDATED - {{latest.createAt.toMillis()|date}} </small>
+                    <br>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</section>
+
+</section>

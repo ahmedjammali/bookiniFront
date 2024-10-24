@@ -1,0 +1,28 @@
+
+header{
+    height: 100px;
+}
+
+.logo{
+    padding: 5px 20px ;
+    border-radius: 20px;
+    background-color: var(--secondry-color );
+    color: var(--primary-color );
+    font-size: 1.5em;
+    text-decoration: none;
+}
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .navbar span {
+    font-size: 16px;
+    color: #333;
+}
+
+header .btn {
+    font-size: 14px;
+    padding: 5px 10px;
+    color: rgb(128, 65, 65);
+}

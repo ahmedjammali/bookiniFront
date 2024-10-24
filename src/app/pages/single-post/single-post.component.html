@@ -1,0 +1,197 @@
+<div class="container shadow-effect ">
+    <div class="row ">
+        <div class="col-md-9 mt-5" >
+<!--  
+            <div class="card shadow-effect" *ngFor="let post of OnePost|async " >
+                <img src="../../../assets/carthage_24.jpg" alt="picture" class="img-fluid-top" width="400">
+                <div class="card-body">
+                    <small class="bg-light text-danger text-center me-3">{{post.category.category}} </small>
+                    <p class="align-right">prix <b>DT</b></p>       
+
+                    <small class="bg-light text-warning text-center me-3">LAST UPDATED - {{post.createAt.toMillis()|date}}</small>
+
+                    <h1 class="mt3 mb-3"> {{post.title}} </h1>
+
+                    <p [innerHtml] = "post.content"></p>
+                </div>
+            </div>-->
+
+
+                        <!-- booking  Form -->
+                        <div class="card mt-5 shadow-effect">
+                            <div class="card-body">
+                                <h4>Buyer Identification</h4>
+                                <hr>
+                                <!-- <p>aaa</p> -->
+            
+                                <div class="alert alert-success text-center " *ngIf = 'commentT' > Comment added successfuly </div>
+                        
+                                <form #commentForm =ngForm (ngSubmit)="onSubmit(commentForm.value)">
+                                    <div class="form-group" >
+                                        <label for="">First Name</label>
+                                        <input type="text"
+                                        placeholder="Enter Your First Name" 
+                                        class="form-control" 
+                                        required 
+                                        name= "name"  
+                                        #Name="ngModel" 
+                                        ngModel 
+                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
+                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
+                                            <div *ngIf="Name.errors?.['required']" >First Name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label for="">Last name</label>
+                                        <input type="text"
+                                        placeholder="Enter Your Last name" 
+                                        class="form-control" 
+                                        required 
+                                        name= "name"  
+                                        #Name="ngModel" 
+                                        ngModel 
+                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
+                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
+                                            <div *ngIf="Name.errors?.['required']" >Last name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label for="">Email Address</label>
+                                        <input type="text"
+                                        placeholder="Enter Your Email Address" 
+                                        class="form-control" 
+                                        required 
+                                        name= "name"  
+                                        #Name="ngModel" 
+                                        ngModel 
+                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
+                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
+                                            <div *ngIf="Name.errors?.['required']" >Email is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label for="">Phone Number</label>
+                                        <input type="text"
+                                        placeholder="Enter Your Number" 
+                                        class="form-control" 
+                                        required 
+                                        name= "name"  
+                                        #Name="ngModel" 
+                                        ngModel 
+                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
+                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
+                                            <div *ngIf="Name.errors?.['required']" >Number is required</div>
+                                        </div>
+                                    </div>
+                                    <!-- 
+                                    <div class="form-group">
+                                        <label for="">Phone Number</label>
+                                        <textarea 
+                                        name="comment" 
+                                        class="form-control"
+                                        placeholder="Add your name here" 
+                                        required  
+                                        ngModel 
+                                        [ngClass]="{'is-invalid' : Comment.touched && Comment.invalid}"
+                                        #Comment = ngModel
+                                        cols="30" rows="10"
+                                        ></textarea>
+                        
+                                        <div class="text-danger" *ngIf='Comment.touched && Comment.invalid' >
+                                            <div *ngIf="Comment.errors?.['required']" >Comment is required</div>
+                                        </div>
+                                    </div> -->
+                        <br>
+                                    <button class="btn btn-info btn-block btn-sub"  [disabled] ="commentForm.invalid" >Buy Now</button>
+                                </form>
+                            </div>
+                        </div>         
+
+
+            <!-- comment Form -->
+
+            <div class="card mt-5 shadow-effect">
+                <div class="card-body">
+                    <h4>Add comment</h4>
+                    <p>You can leave a comment using this coment form</p>
+
+                    <div class="alert alert-success text-center " *ngIf = 'commentT' > Comment added successfuly </div>
+            
+                    <form #commentForm =ngForm (ngSubmit)="onSubmit(commentForm.value)">
+                        <!-- <div class="form-group" > 
+                            <label for="">Name</label>
+                            <input type="text"
+                            placeholder="Enter Your Name" 
+                            class="form-control" 
+                            required 
+                            name= "name"  
+                            #Name="ngModel" 
+                            ngModel 
+                            [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
+                            <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
+                                <div *ngIf="Name.errors?.['required']" >Name is required</div>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label for="">Comment</label>
+                            <textarea 
+                            name="comment" 
+                            class="form-control"
+                            placeholder="Add your comment here" 
+                            required  
+                            ngModel 
+                            [ngClass]="{'is-invalid' : Comment.touched && Comment.invalid}"
+                            #Comment = ngModel
+                            cols="30" rows="10"
+                            ></textarea>
+            
+                            <div class="text-danger" *ngIf='Comment.touched && Comment.invalid' >
+                                <div *ngIf="Comment.errors?.['required']" >Comment is required</div>
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-info btn-block btn-sub"  [disabled] ="commentForm.invalid" >Add a Comment</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-5 mt-5 pb-5 shadow-effect">
+
+            
+            <!-- comment List -->
+            <h4 class="mt-3 mb-3">Comments : {{length}}</h4>
+            <div class="card-body" *ngFor = "let com of commentsArray |async " >
+                <div class="comment-box mt-3">
+                    <h6 class="mb-0"> {{com.name}} </h6>
+                    <small class="date">Last Updated - {{com.createAt.toMillis()|date }} </small>
+
+                    <div class="mt-3 mb-3">
+                       {{com.comment}}
+                    </div>
+                    <!-- <a href="" class="mt-1">Reply</a>
+                    <a href="" class="mt-1 ms-3">View Reply</a> -->
+
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-3 mt-5">
+            <div *ngFor = "let similarPost of SimilarPost|async ">
+                <div class="card  mb-3" *ngIf="similarPost" [routerLink]="['/post',similarPost.permalink,similarPost.category.categoryId,similarPost.id]">
+                    <img src="../../../assets/carthage_24.jpg" alt="post-image" class="card-img-top">
+                
+                    <div class="card-body">
+                        <small class="bg-light text-danger text-center mr-2">{{similarPost.category.category}}</small>
+                        <p class="align-right">prix <b>DT</b></p>       
+                
+                        <h5 class="mt-1"> {{similarPost.title}} </h5>
+                        <small class="date">LAST UPDATED - {{similarPost.createAt.toMillis()|date}} </small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

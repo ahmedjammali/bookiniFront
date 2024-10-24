@@ -1,0 +1,30 @@
+a
+{
+    text-decoration: none;
+}
+
+
+.comment-box{
+    padding: 15px 35px;
+    background-color: #f0f0f0;
+}
+
+h4{
+    padding-left:25px ;
+}
+.align-right {
+    text-align: right;
+    margin-right: 1rem; /* Ajoute un peu d'espace à droite si nécessaire */
+  }
+  .btn-sub{
+    height: 50px;
+    border: none;
+    font-size: 13px;
+    background-color: #961b36;
+    color: aliceblue;
+}
+.date{
+    color: brown;
+}
+
+  
