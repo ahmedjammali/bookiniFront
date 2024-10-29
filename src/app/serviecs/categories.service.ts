@@ -7,6 +7,7 @@ import { Firestore , collection, collectionData} from '@angular/fire/firestore';
 export class CategoriesService {
 
   constructor(private fire : Firestore) { }
+  apiUri = ""
 
 
   loadData(){

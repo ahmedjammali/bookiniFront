@@ -1,0 +1,18 @@
+.btn-custom {
+    background-color: var(--primary-color); /* Couleur de fond primaire */
+    color: var(--secondry-color); /* Couleur du texte */
+    border: none; /* Supprimer les bordures */
+    padding: 10px 20px; /* Espacement */
+    text-align: center; /* Centrer le texte */
+    display: inline-block; /* Affichage en bloc */
+    font-size: 16px; /* Taille de police */
+    margin: 4px 2px; /* Marge */
+    cursor: pointer; /* Curseur en forme de main */
+    border-radius: 8px; /* Coins arrondis */
+    transition: background-color 0.3s; /* Transition pour l'effet de survol */
+}
+
+.btn-custom:hover {
+    background-color: var(--secondry-color); /* Couleur au survol */
+    color: var(--primary-color); /* Changer la couleur du texte au survol */
+}

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { Sub } from '../../models/sub';
-import { SubService } from '../../serviecs/sub.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/serviecs/authentification.service';
+
+import { UserService } from 'src/app/serviecs/user.service';
+
 
 @Component({
   selector: 'app-login',
@@ -8,26 +11,40 @@ import { SubService } from '../../serviecs/sub.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  EmailError :boolean = false
-
-  isSubscribed : boolean = false
-
-  constructor (private subs :SubService){}
+  EmailError : boolean = false
+  isLogged : boolean = false
+  found : boolean = true 
+  PasswordError : boolean = false
+  constructor (private auth: UserService , private route : Router , private auth2 : AuthService){}
 
   ngOnInit(): void {}
   
   onSubmit(formVal){
+    this.EmailError  = false
+    this.isLogged = false
+  this.found  = true 
+  this.PasswordError  = false
     this.EmailError = false
-    const subData : Sub={
-      name : formVal.name,
-      email : formVal.email
+    const subData ={
+      email : formVal.email , 
+      mdp : formVal.mdp,
     }
-    this.subs.checksubs(subData.email).subscribe(val =>{
-      if (val.length == 0){
-        this.isSubscribed= true
-        this.subs.addSubs(subData)
+    this.auth.login(subData).subscribe(
+      response => {
+        console.log(response);
+        this.isLogged = true; 
+        this.auth2.login(response.user)
+        this.route.navigate(['/']) 
+      },
+      error => {
+        console.error('Credentials Error:', error);
+        if (error.error.message =='User not found'){
+          this.found = false
+        }
+        if (error.error.message == 'Invalid password'){
+          this.PasswordError = true
+        }
+        
       }
-  
-
-      
-})}}
+    );
+    }}

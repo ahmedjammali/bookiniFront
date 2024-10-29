@@ -18,9 +18,24 @@ import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore'; 
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { LoginAdminComponent } from './admin/login-admin/login-admin.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AhmedComponent } from './admin/categories/ahmed.component';
+import { AllPostComponent } from './admin/posts/all-post/all-post.component';
+import { NewPostComponent } from './admin/posts/new-post/new-post.component';
+import { SubscribersComponent } from './admin/subscribers/subscribers.component';
+import { ContactComponent } from './admin/contact/contact.component';
+import { CommentsComponent } from './admin/comments/comments.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 const firebase = {
   apiKey: "AIzaSyCPPRd8_aawMP3_Q1WZWZiKWDTpti13HrA",
@@ -50,6 +65,15 @@ const firebase = {
     AboutUsComponent,
     LoginComponent,
     SignupComponent,
+    LoginAdminComponent,
+    DashboardComponent,
+    AhmedComponent,
+    AllPostComponent,
+    NewPostComponent,
+    LoginComponent,
+    SubscribersComponent,
+    ContactComponent,
+    CommentsComponent,
 
   ],
   imports: [
@@ -57,7 +81,12 @@ const firebase = {
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(firebase)),
     provideFirestore(() => getFirestore()),
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    AngularEditorModule,
+    HttpClientModule,
+    ReactiveFormsModule,
 
   ],
   providers: [],

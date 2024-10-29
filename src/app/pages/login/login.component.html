@@ -3,32 +3,25 @@
     <div class="card-body">
         <div class="text-center mt-3 mb-5">
             <h3>LOGIN FORM</h3>
-            <p class="m-auto subs-text">Subscribe to get notifified for new posts</p>
+            <p class="m-auto subs-text">Subscribe to get notifified for new Event</p>
 
             <div class="alert alert-danger mt-3" *ngIf='EmailError'>
                 Email is Already in use
             </div>
-
-            <div class="alert alert-info mt-3" *ngIf='isSubscribed'>
-                Your Are Successfully subscribed.Stay Tuned for Awesome blog posts...!
+            <div class="alert alert-danger mt-3" *ngIf='!found'>
+                User Does not exist
+            </div>
+            <div class="alert alert-danger mt-3" *ngIf='PasswordError'>
+                Password Error
             </div>
 
-            <form  class="form-inline  mb-5 mt-3"  #subForm = ngForm (ngSubmit)="onSubmit(subForm.value)" *ngIf='!isSubscribed'>
+            <div class="alert alert-info mt-3" *ngIf='isLogged'>
+                Your Are Successfully subscribed.
+            </div>
 
-                    <div>
-                        <input type="text" 
-                        class="form-control" 
-                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}"  
-                        placeholder="Your Name" 
-                        name="name"  
-                        #Name='ngModel' 
-                        ngModel required >
+            <form  class="form-inline  mb-5 mt-3"  #subForm = ngForm (ngSubmit)="onSubmit(subForm.value)" *ngIf='!isLogged'>
 
-                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
-                            <div *ngIf="Name.errors?.['required']" >Name is required</div>
-                        </div>
-
-                    </div>
+                    
                     <div>
                         <input type="email"
                          class="form-control" 
@@ -47,9 +40,23 @@
                             <div *ngIf="Email.errors?.['email']" >Enter a valid Email</div>
                         </div>
                     </div>
+                    <div>
+                        <input type="password" 
+                        class="form-control" 
+                        [ngClass]="{'is-invalid' : mdp.touched && mdp.invalid}"  
+                        placeholder="Your Password" 
+                        name="mdp"  
+                        #mdp='ngModel' 
+                        ngModel required >
+
+                        <div class="text-danger" *ngIf='mdp.touched && mdp.invalid' >
+                            <div *ngIf="mdp.errors?.['required']" >Password is required</div>
+                        </div>
+
+                    </div>
                     
                     <div>
-                        <button class="btn btn-info btn-block btn-sub" [disabled] = 'subForm.invalid' >SUBSCRIBE</button>
+                        <button class="btn btn-info btn-block btn-sub" [disabled] = 'subForm.invalid' >Login</button>
 
                     </div>
                     <div class="mt-3">

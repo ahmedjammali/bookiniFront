@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Sub } from '../../models/sub';
-import { SubService } from '../../serviecs/sub.service';
+import { UserService } from 'src/app/serviecs/user.service';
+import { log } from '@grpc/grpc-js/build/src/logging';
+
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -12,23 +15,23 @@ export class SignupComponent {
 
   isSubscribed : boolean = false
 
-  constructor (private subs :SubService){}
+  constructor (private auth : UserService){}
 
   ngOnInit(): void {}
-  
-  onSubmit(formVal){
-    this.EmailError = false
-    const subData : Sub={
-      name : formVal.name,
-      email : formVal.email
-    }
-    this.subs.checksubs(subData.email).subscribe(val =>{
-      if (val.length == 0){
-        this.isSubscribed= true
-        this.subs.addSubs(subData)
-      }
-  
 
-      
-})}}
+  onSubmit(formData: any) {
+    console.log(formData);
+    
+    this.auth.addUser(formData).subscribe(
+      response => {
+        console.log(response);
+        this.isSubscribed = true; // Show success message
+      },
+      error => {
+        console.error('Error adding user:', error);
+      }
+    );
+  }
+}
+
 
