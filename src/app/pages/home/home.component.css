@@ -35,7 +35,7 @@
     height: 100%;
   }
   .featured-section {
-    background-image: url('../../../assets/pixelcut-export.jpeg');
+    background-image: url('src/assets/img.jpg');
     background-position: center; 
     padding: 50px 0;
     /* background-repeat: no-repeat; */

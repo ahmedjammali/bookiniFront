@@ -22,7 +22,7 @@ import { LoginAdminComponent } from './admin/login-admin/login-admin.component';
 const routes: Routes = [
   {path : '',component : HomeComponent},
   {path : 'category/:category/:id',component : SingleCategoryComponent},
-  {path : 'post/:id/:category/:id2',component : SinglePostComponent},
+  {path : 'event/:category/:id2',component : SinglePostComponent},
   {path : 'about',component : AboutUsComponent},
   {path : 'term-conditions',component : TermsAndConditionsComponent},
   {path : 'contact',component : ContactUsComponent},

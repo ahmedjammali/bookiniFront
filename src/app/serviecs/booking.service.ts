@@ -3,19 +3,18 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environnement';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService {
+export class BookingService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient ) { }
+
   private apiUrl = environment.apiUrl;
 
 
-  loadData(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/categories`);
+  createBooking(bookingData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/bookings`,bookingData)
   }
 
-  
 }

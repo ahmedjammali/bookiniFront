@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoriesService } from 'src/app/serviecs/categories.service';
-import { SubService } from 'src/app/serviecs/sub.service';
+
 
 @Component({
   selector: 'app-category-navbar',
@@ -10,15 +10,30 @@ import { SubService } from 'src/app/serviecs/sub.service';
 })
 export class CategoryNavbarComponent implements OnInit {
   
-  categories  : Observable<any>
+  categories  : any
 
 
-  constructor (private categoS : CategoriesService , private subs :SubService){}
+  constructor (private categ : CategoriesService , private cdr :ChangeDetectorRef){}
 
   
 
   ngOnInit(): void {
-      this.categories = this.categoS.loadData()
+    
+    this.categ.loadData().subscribe(
+      data => {
+
+          this.categories = data; // Assign the fetched data to the categories property
+          console.log(this.categories); // Log the categories data
+          this.cdr.detectChanges()
+        
+        
+      },
+      error => {
+        console.error('Error fetching categories:', error); // Handle errors
+      }
+    );
+      console.log(this.categories)
+      console.log ("azeaz")
   }
 
 }

@@ -1,111 +1,116 @@
 <div class="container shadow-effect ">
     <div class="row ">
         <div class="col-md-9 mt-5" >
-<!--  
-            <div class="card shadow-effect" *ngFor="let post of OnePost|async " >
-                <img src="../../../assets/carthage_24.jpg" alt="picture" class="img-fluid-top" width="400">
+             
+            <div class="card shadow-effect" *ngIf="OneEvent" >
+                <img src={{OneEvent.poster_path}} alt="picture" class="img-fluid-top" width="400">
                 <div class="card-body">
-                    <small class="bg-light text-danger text-center me-3">{{post.category.category}} </small>
-                    <p class="align-right">prix <b>DT</b></p>       
+                    <p class="align-right"> <b>{{OneEvent.price}} TND</b> </p>   
+                    <small class="bg-light text-danger text-center me-3">{{OneEvent.eventCategory.name}} </small>
+                        
 
-                    <small class="bg-light text-warning text-center me-3">LAST UPDATED - {{post.createAt.toMillis()|date}}</small>
+                    <small class="bg-light text-warning text-center me-3">{{OneEvent.dateE |date}}</small>
 
-                    <h1 class="mt3 mb-3"> {{post.title}} </h1>
+                    <h1 class="mt3 mb-3"> {{OneEvent.nom}} </h1>
+                    <h5> <b>Total Seats</b> {{OneEvent.totalSeats}} </h5>
+                    <h5> <b>Available Seats</b> {{OneEvent.availableSeats}} </h5>
 
-                    <p [innerHtml] = "post.content"></p>
+                    <p> {{OneEvent.description}} </p>
                 </div>
-            </div>-->
+                <div class="card-body" *ngIf = "logged">
+                    <button class="btn btn-info btn-block btn-sub" [routerLink]=" '/login'"> Book Your Ticket </button>
+                </div>
+            </div>
+
+        
+
+
+
 
 
                         <!-- booking  Form -->
-                        <div class="card mt-5 shadow-effect">
+                        <div class="card mt-5 shadow-effect" *ngIf="!logged">
                             <div class="card-body">
-                                <h4>Buyer Identification</h4>
+                                <h4>Book Your Ticket</h4>
                                 <hr>
-                                <!-- <p>aaa</p> -->
-            
-                                <div class="alert alert-success text-center " *ngIf = 'commentT' > Comment added successfuly </div>
+                                <div class="mt-3"  style="background-color: #961b36; color: white; margin: 20px; margin-y  : 15px" *ngIf = "booked"> Booked Successfully </div>
                         
-                                <form #commentForm =ngForm (ngSubmit)="onSubmit(commentForm.value)">
-                                    <div class="form-group" >
-                                        <label for="">First Name</label>
-                                        <input type="text"
-                                        placeholder="Enter Your First Name" 
-                                        class="form-control" 
-                                        required 
-                                        name= "name"  
-                                        #Name="ngModel" 
-                                        ngModel 
-                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
-                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
-                                            <div *ngIf="Name.errors?.['required']" >First Name is required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label for="">Last name</label>
-                                        <input type="text"
-                                        placeholder="Enter Your Last name" 
-                                        class="form-control" 
-                                        required 
-                                        name= "name"  
-                                        #Name="ngModel" 
-                                        ngModel 
-                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
-                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
-                                            <div *ngIf="Name.errors?.['required']" >Last name is required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label for="">Email Address</label>
-                                        <input type="text"
-                                        placeholder="Enter Your Email Address" 
-                                        class="form-control" 
-                                        required 
-                                        name= "name"  
-                                        #Name="ngModel" 
-                                        ngModel 
-                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
-                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
-                                            <div *ngIf="Name.errors?.['required']" >Email is required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label for="">Phone Number</label>
-                                        <input type="text"
-                                        placeholder="Enter Your Number" 
-                                        class="form-control" 
-                                        required 
-                                        name= "name"  
-                                        #Name="ngModel" 
-                                        ngModel 
-                                        [ngClass]="{'is-invalid' : Name.touched && Name.invalid}">
-                                        <div class="text-danger" *ngIf='Name.touched && Name.invalid' >
-                                            <div *ngIf="Name.errors?.['required']" >Number is required</div>
-                                        </div>
-                                    </div>
-                                    <!-- 
+                                <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)">
                                     <div class="form-group">
-                                        <label for="">Phone Number</label>
-                                        <textarea 
-                                        name="comment" 
-                                        class="form-control"
-                                        placeholder="Add your name here" 
-                                        required  
-                                        ngModel 
-                                        [ngClass]="{'is-invalid' : Comment.touched && Comment.invalid}"
-                                        #Comment = ngModel
-                                        cols="30" rows="10"
-                                        ></textarea>
-                        
-                                        <div class="text-danger" *ngIf='Comment.touched && Comment.invalid' >
-                                            <div *ngIf="Comment.errors?.['required']" >Comment is required</div>
+                                        <label for="prenom">First Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter Your First Name"
+                                            class="form-control"
+                                            required
+                                            name="prenom"
+                                            #prenom="ngModel"
+                                            ngModel
+                                            [ngClass]="{'is-invalid': prenom.touched && prenom.invalid}"
+                                        />
+                                        <div class="text-danger" *ngIf="prenom.touched && prenom.invalid">
+                                            <div *ngIf="prenom.errors?.['required']">First Name is required</div>
                                         </div>
-                                    </div> -->
-                        <br>
-                                    <button class="btn btn-info btn-block btn-sub"  [disabled] ="commentForm.invalid" >Buy Now</button>
+                                    </div>
+                        
+                                    <div class="form-group">
+                                        <label for="nom">Last Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter Your Last Name"
+                                            class="form-control"
+                                            required
+                                            name="nom"
+                                            #nom="ngModel"
+                                            ngModel
+                                            [ngClass]="{'is-invalid': nom.touched && nom.invalid}"
+                                        />
+                                        <div class="text-danger" *ngIf="nom.touched && nom.invalid">
+                                            <div *ngIf="nom.errors?.['required']">Last Name is required</div>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input
+                                            type="email"
+                                            placeholder="Enter Your Email Address"
+                                            class="form-control"
+                                            required
+                                            name="email"
+                                            #email="ngModel"
+                                            ngModel
+                                            [ngClass]="{'is-invalid': email.touched && email.invalid}"
+                                        />
+                                        <div class="text-danger" *ngIf="email.touched && email.invalid">
+                                            <div *ngIf="email.errors?.['required']">Email is required</div>
+                                            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter Your Number"
+                                            class="form-control"
+                                            required
+                                            name="phone"
+                                            #phone="ngModel"
+                                            ngModel
+                                            [ngClass]="{'is-invalid': phone.touched && phone.invalid}"
+                                        />
+                                        <div class="text-danger" *ngIf="phone.touched && phone.invalid">
+                                            <div *ngIf="phone.errors?.['required']">Phone Number is required</div>
+                                        </div>
+                                    </div>
+                        
+                                    <br>
+                                    <button class="btn btn-info btn-block btn-sub" [disabled]="commentForm.invalid">Book Now</button>
                                 </form>
                             </div>
-                        </div>         
+                        </div>
+                              
 
 
             <!-- comment Form -->

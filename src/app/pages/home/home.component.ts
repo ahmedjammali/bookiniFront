@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
+import { log } from '@grpc/grpc-js/build/src/logging';
 import { Observable } from 'rxjs';
-import { PostsService } from 'src/app/serviecs/posts.service';
+import { EventsService } from 'src/app/serviecs/events.service';
+
 
 @Component({
   selector: 'app-home',
@@ -10,15 +12,23 @@ import { PostsService } from 'src/app/serviecs/posts.service';
 })
 export class HomeComponent implements OnInit{
 
-  postArray : Observable<any>
+  postArray : any
+  latestsPost : any
 
-  latestsPost  : Observable<any>
-
-  constructor (private postS : PostsService){}
+  constructor (private eventS : EventsService){}
 
   ngOnInit(): void {
-      this.postArray =  this.postS.loadFeatured()
-      this.latestsPost = this.postS.loadLastest()
+    this.eventS.loadEvent().subscribe(
+      data =>{
+        
+        this.latestsPost = data 
+      } , 
+      error => {
+        console.error('Error fetching categories:', error); // Handle errors
+      }
+    )
+
+      
   }
   
 
